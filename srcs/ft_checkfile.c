@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_checkfile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/29 14:19:38 by prossi            #+#    #+#             */
-/*   Updated: 2017/01/03 16:34:20 by prossi           ###   ########.fr       */
+/*   Created: 2017/01/02 12:27:29 by prossi            #+#    #+#             */
+/*   Updated: 2017/01/03 17:41:08 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			main(int ac, char **av)
+int		ft_checkfile(char *buf)
 {
-	int		fd;
-	char	*buf;
+	int		i;
+	int		j;
 
-	if (ac != 2)
-		ft_putstr("usage: fillit source_file\n");
-	else
+	i = 0;
+	j = 0;
+	while (buf[i])
 	{
-		if ((fd = ft_openfile(av[1])) == -1)
+		if (buf[i] != '#' && buf[i] != '.' && buf[i] != '\n')
 			return (1);
-		buf = ft_readfile(fd);
-		if (ft_readfile(fd) == NULL)
+		if (buf[i] == '\n' && buf[i + 2] && buf[i + 2] == '\n')
 			return (1);
-		if (ft_closefile(fd) == -1)
+		if (buf[0] == '\n' || buf[ft_strlen(buf) - 2] == '\n')
 			return (1);
-		if (ft_checkfile(buf) == 1)
+		if (buf[i] == '\n')
 		{
-			ft_putstr("error\n");
+			j++;
+			if (j == 4 && (buf[i + 1] == '.' || buf[i + 1] == '#'))
+				return (1);
+			if (j == 4)
+				j = j - 5;
 		}
+		i++;
 	}
 	return (0);
 }

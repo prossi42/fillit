@@ -6,7 +6,7 @@
 #    By: prossi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/29 14:18:48 by prossi            #+#    #+#              #
-#    Updated: 2016/12/29 17:10:18 by prossi           ###   ########.fr        #
+#    Updated: 2017/01/03 10:00:32 by prossi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -I./includes
 SRC_PREFIX = ./srcs/
 
-SRC = main ft_openfile ft_closefile
+SRC = main ft_openfile ft_closefile ft_readfile ft_checkfile
 
 SRC := $(addsuffix .c, $(SRC))
 SRC := $(addprefix $(SRC_PREFIX), $(SRC))
