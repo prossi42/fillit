@@ -1,41 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checkfile.c                                     :+:      :+:    :+:   */
+/*   ft_inputalgo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/02 12:27:29 by prossi            #+#    #+#             */
-/*   Updated: 2017/01/09 13:21:29 by prossi           ###   ########.fr       */
+/*   Created: 2017/01/11 17:59:52 by prossi            #+#    #+#             */
+/*   Updated: 2017/01/11 18:07:20 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_checkfile(char *buf)
+t_tetri		*ft_inputalgo(char *buf)
 {
-	int		i;
-	int		j;
+	t_tetri		*tetri;
+	int			count_tetri;
 
-	i = 0;
-	j = 0;
-	if (ft_checkspace(buf) == 1)
-		return (1);
-	if (ft_checkform(buf) == 1)
-		return (1);
-	if (ft_checkchar(buf) == 1)
-		return (1);
-	while (buf[i])
-	{
-		if (buf[i] == '#')
-		{
-			j++;
-			if (ft_tetriform(buf, i, j) == 1)
-				return (1);
-		}
-		if (j == 4)
-			j = 0;
-		i++;
-	}
-	return (0);
+	count_tetri = ft_countetri(buf);
+	tetri = ft_list(buf);
+	tetri = ft_upleft(tetri, count_tetri);
+	return (tetri);
 }

@@ -6,7 +6,7 @@
 #    By: prossi <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/12/29 14:18:48 by prossi            #+#    #+#              #
-#    Updated: 2017/01/03 10:00:32 by prossi           ###   ########.fr        #
+#    Updated: 2017/01/11 18:09:49 by prossi           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -I./includes
 SRC_PREFIX = ./srcs/
 
-SRC = main ft_openfile ft_closefile ft_readfile ft_checkfile
+SRC = main ft_openfile ft_closefile ft_readfile ft_checkfile ft_checkspace \
+	  ft_checkform ft_checkchar ft_tetriform ft_countetri ft_list ft_upleft \
+	  ft_inputalgo
 
 SRC := $(addsuffix .c, $(SRC))
 SRC := $(addprefix $(SRC_PREFIX), $(SRC))

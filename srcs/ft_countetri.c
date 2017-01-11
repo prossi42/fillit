@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checkfile.c                                     :+:      :+:    :+:   */
+/*   ft_countetri.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/02 12:27:29 by prossi            #+#    #+#             */
-/*   Updated: 2017/01/09 13:21:29 by prossi           ###   ########.fr       */
+/*   Created: 2017/01/07 17:10:22 by prossi            #+#    #+#             */
+/*   Updated: 2017/01/07 17:14:49 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_checkfile(char *buf)
+int		ft_countetri(char *buf)
 {
 	int		i;
 	int		j;
+	int		k;
 
 	i = 0;
 	j = 0;
-	if (ft_checkspace(buf) == 1)
-		return (1);
-	if (ft_checkform(buf) == 1)
-		return (1);
-	if (ft_checkchar(buf) == 1)
-		return (1);
+	k = 0;
 	while (buf[i])
 	{
-		if (buf[i] == '#')
-		{
+		if (buf[i] == '\n')
 			j++;
-			if (ft_tetriform(buf, i, j) == 1)
-				return (1);
-		}
 		if (j == 4)
-			j = 0;
+		{
+			k++;
+			j = -1;
+		}
 		i++;
 	}
-	return (0);
+	return (k);
 }

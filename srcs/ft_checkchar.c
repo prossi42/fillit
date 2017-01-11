@@ -1,41 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checkfile.c                                     :+:      :+:    :+:   */
+/*   ft_checkchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/02 12:27:29 by prossi            #+#    #+#             */
-/*   Updated: 2017/01/09 13:21:29 by prossi           ###   ########.fr       */
+/*   Created: 2017/01/07 10:27:18 by prossi            #+#    #+#             */
+/*   Updated: 2017/01/07 13:17:54 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_checkfile(char *buf)
+int		ft_checkchar(char *buf)
 {
 	int		i;
 	int		j;
+	int		k;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	if (ft_checkspace(buf) == 1)
-		return (1);
-	if (ft_checkform(buf) == 1)
-		return (1);
-	if (ft_checkchar(buf) == 1)
-		return (1);
-	while (buf[i])
+	k = 0;
+	while (buf[++i])
 	{
+		if (buf[i] != '#' && buf[i] != '.' && buf[i] != '\n')
+			return (1);
 		if (buf[i] == '#')
-		{
+			k++;
+		if (buf[i] == '\n')
 			j++;
-			if (ft_tetriform(buf, i, j) == 1)
-				return (1);
-		}
+		if (j == 4 && k != 4)
+			return (1);
 		if (j == 4)
-			j = 0;
-		i++;
+		{
+			k = 0;
+			j = -1;
+		}
 	}
 	return (0);
 }
