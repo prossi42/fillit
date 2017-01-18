@@ -6,7 +6,7 @@
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/02 12:27:29 by prossi            #+#    #+#             */
-/*   Updated: 2017/01/09 13:21:29 by prossi           ###   ########.fr       */
+/*   Updated: 2017/01/18 14:26:26 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,20 @@ int		ft_checkfile(char *buf)
 {
 	int		i;
 	int		j;
+	int		connect;
 
-	i = 0;
+	i = -1;
 	j = 0;
+	connect = 0;
 	if (ft_checkspace(buf) == 1)
 		return (1);
 	if (ft_checkform(buf) == 1)
 		return (1);
 	if (ft_checkchar(buf) == 1)
 		return (1);
-	while (buf[i])
-	{
-		if (buf[i] == '#')
-		{
-			j++;
-			if (ft_tetriform(buf, i, j) == 1)
-				return (1);
-		}
-		if (j == 4)
-			j = 0;
-		i++;
-	}
+	if (ft_countetri(buf) > 26)
+		return (1);
+	if (ft_checkconnect(buf) == 1)
+		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/29 13:58:35 by prossi            #+#    #+#             */
-/*   Updated: 2017/01/11 18:09:27 by prossi           ###   ########.fr       */
+/*   Updated: 2017/01/18 14:18:23 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int				ft_checkfile(char *buf);
 int				ft_checkspace(char *buf);
 int				ft_checkform(char *buf);
 int				ft_checkchar(char *buf);
-int				ft_tetriform(char *buf, int i, int j);
+int				ft_checkconnect(char *buf);
+int				ft_tetriform(char *buf, int i, int connect);
 int				ft_countetri(char *buf);
 t_tetri			*ft_list(char *buf);
 t_tetri			*ft_listnew(char *str);

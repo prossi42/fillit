@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checkform.c                                     :+:      :+:    :+:   */
+/*   ft_tetriform.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/05 16:31:59 by prossi            #+#    #+#             */
-/*   Updated: 2017/01/12 13:27:31 by prossi           ###   ########.fr       */
+/*   Created: 2017/01/07 13:30:09 by prossi            #+#    #+#             */
+/*   Updated: 2017/01/12 15:16:15 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_checkform(char *buf)
+int		ft_tetriform(char *buf, int i, int j)
 {
-	int		i;
-	int		j;
-	int		k;
-
-	i = -1;
-	j = 0;
-	k = 0;
-	while (buf[++i])
+	if (j == 4)
 	{
-		if (buf[i] == '\n')
-		{
-			j++;
-			if (j == 4 && (buf[i + 1] == '.' || buf[i + 1] == '#'))
-				return (1);
-			if (j != 4 && buf[i + 1] == '\0')
-				return (1);
-			j = (j == 4) ? -1 : j;
-			if (k != 4 && j != 0)
-				return (1);
-			k = (k == 4) ? 0 : k;
-		}
-		k = (buf[i] == '.' || buf[i] == '#') ? k + 1 : k;
+		if (buf[i - 5] && buf[i - 5] == '#')
+			return (0);
 	}
-	return (0);
+	if (buf[i - 1] && buf[i - 1] == '#')
+		return (0);
+	if (buf[i + 1] && buf[i + 1] == '#')
+		return (0);
+	if (buf[i + 5] && buf[i + 5] == '#')
+		return (0);
+	return (1);
 }

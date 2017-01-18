@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checkform.c                                     :+:      :+:    :+:   */
+/*   ft_checkconnect.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: prossi <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/05 16:31:59 by prossi            #+#    #+#             */
-/*   Updated: 2017/01/12 13:27:31 by prossi           ###   ########.fr       */
+/*   Created: 2017/01/18 13:52:43 by prossi            #+#    #+#             */
+/*   Updated: 2017/01/18 14:16:48 by prossi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		ft_checkform(char *buf)
+int		ft_checkconnect(char *buf)
 {
 	int		i;
 	int		j;
-	int		k;
+	int		connect;
 
 	i = -1;
 	j = 0;
-	k = 0;
+	connect = 0;
 	while (buf[++i])
 	{
-		if (buf[i] == '\n')
+		if (buf[i] == '#')
 		{
 			j++;
-			if (j == 4 && (buf[i + 1] == '.' || buf[i + 1] == '#'))
-				return (1);
-			if (j != 4 && buf[i + 1] == '\0')
-				return (1);
-			j = (j == 4) ? -1 : j;
-			if (k != 4 && j != 0)
-				return (1);
-			k = (k == 4) ? 0 : k;
+			connect = ft_tetriform(buf, i, connect);
 		}
-		k = (buf[i] == '.' || buf[i] == '#') ? k + 1 : k;
+		if (j == 4)
+		{
+			if (connect != 6 && connect != 8)
+				return (1);
+			j = 0;
+			connect = 0;
+		}
 	}
 	return (0);
 }
